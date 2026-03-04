@@ -1,4 +1,4 @@
-const CACHE_NAME = "todo-pwa-v2";
+const CACHE_NAME = "todo-pwa-v3.1";
 
 const FILES_TO_CACHE = [
   "/",

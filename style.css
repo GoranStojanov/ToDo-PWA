@@ -1,52 +1,187 @@
+/* General page style */
 body {
   font-family: Arial, sans-serif;
-  background: #f4f4f4;
-  display: flex;
-  justify-content: center;
-  padding-top: 50px;
+  margin: 20px;
+  background-color: #f7f7f7;
+  color: #333;
 }
 
-.container {
-  background: white;
-  padding: 20px;
-  width: 350px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
+/* Header */
 h1 {
   text-align: center;
+  color: #222;
 }
 
-.input-area {
-  display: flex;
-  gap: 5px;
+/* Task input area */
+#taskInput {
+  width: 70%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
 }
 
-input {
-  flex: 1;
-  padding: 8px;
-}
-
-button {
-  padding: 8px;
-  background: #4caf50;
-  color: white;
+#addBtn {
+  padding: 10px 16px;
+  font-size: 16px;
+  margin-left: 8px;
   border: none;
+  border-radius: 4px;
+  background-color: #4caf50;
+  color: white;
   cursor: pointer;
+}
+
+#addBtn:hover {
+  background-color: #45a049;
+}
+
+/* Task list */
+#taskList {
+  margin-top: 20px;
+  padding-left: 0;
+}
+
+/* Individual task items */
+li {
+  list-style: none;
+  background-color: #eee;
+  margin-top: 5px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  border-radius: 4px;
+  cursor: default;
+  transition: background 0.2s;
+}
+
+li:hover {
+  background-color: #e0e0e0;
+}
+
+/* Completed tasks */
+li.completed span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+li span:last-child {
+  margin-left: auto;
+  cursor: pointer;
+  font-weight: bold;
+  color: #d11a2a;
+  z-index: 10; /* Add this */
+  position: relative; /* Needed for z-index to apply */
+}
+
+li span:last-child:hover {
+  color: #a50f1a;
+}
+
+/* Modal overlay */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none; /* hidden by default */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal content box */
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 250px;
+  max-width: 90%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.dragging {
+  opacity: 0.6;
+  background-color: #d0e6ff;
+  transition: background 0.2s;
 }
 
 li {
-  list-style: none;
-  padding: 8px;
-  margin-top: 5px;
-  background: #eee;
-  display: flex;
-  justify-content: space-between;
+  transition: background 0.2s;
+}
+
+/* Modal text */
+#modalText {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+/* Modal buttons */
+#modalCancel,
+#modalOk {
+  padding: 10px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-li.completed {
-  text-decoration: line-through;
-  opacity: 0.6;
+#modalCancel {
+  background-color: #ccc;
+  color: #333;
+  margin-right: 10px;
+}
+
+#modalCancel:hover {
+  background-color: #bbb;
+}
+
+#modalOk {
+  background-color: #d11a2a;
+  color: white;
+}
+
+#modalOk:hover {
+  background-color: #a50f1a;
+}
+
+/* Responsive for mobile */
+@media (max-width: 480px) {
+  #taskInput {
+    width: 60%;
+  }
+
+  #addBtn {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  li {
+    font-size: 14px;
+    padding: 6px;
+  }
+
+  #modalText {
+    font-size: 14px;
+  }
+
+  #modalCancel,
+  #modalOk {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+#appVersion {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+  font-style: italic;
 }
