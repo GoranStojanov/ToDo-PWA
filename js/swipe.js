@@ -20,6 +20,13 @@ export function enableSwipe(li, index) {
 
     if (deltaX < 0) {
       li.style.transform = `translateX(${deltaX}px)`;
+
+      // Add red background if past small threshold
+      if (deltaX < -20) {
+        li.classList.add("swiping");
+      } else {
+        li.classList.remove("swiping");
+      }
     }
   });
 
@@ -40,5 +47,6 @@ export function enableSwipe(li, index) {
     // Snap back
     li.style.transform = "";
     swiping = false;
+    li.classList.remove("swiping");
   });
 }
