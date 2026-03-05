@@ -1,6 +1,7 @@
 import { getTasks, toggleTask, deleteTask } from "./tasks.js";
 import { showConfirm } from "./modal.js";
 import { enableDrag } from "./drag.js";
+import { enableSwipe } from "./swipe.js";
 
 const taskList = document.getElementById("taskList");
 
@@ -55,6 +56,7 @@ export function renderTasks() {
 
     // Enable drag AFTER dataset.index is set
     enableDrag(li, index);
+    enableSwipe(li, index);
 
     // Completed styling
     li.classList.toggle("completed", task.completed);
