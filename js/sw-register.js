@@ -1,81 +1,45 @@
+import { APP_VERSION } from "./config.js";
+
 if ("serviceWorker" in navigator && location.hostname !== "localhost") {
-  navigator.serviceWorker
-    .register("service-worker-built.js")
-    .then((registration) => {
-      console.log("Service Worker Registered");
+  navigator.serviceWorker.register("service-worker.js").then((reg) => {
+    console.log("Service Worker Registered (App v" + APP_VERSION + ")");
 
-      registration.onupdatefound = () => {
-        const newWorker = registration.installing;
+    reg.addEventListener("updatefound", () => {
+      const newWorker = reg.installing;
 
-        newWorker.onstatechange = () => {
-          if (
-            newWorker.state === "installed" &&
-            navigator.serviceWorker.controller
-          ) {
-            showUpdateBanner(registration);
-          }
-        };
-      };
+      newWorker.addEventListener("statechange", () => {
+        if (
+          newWorker.state === "installed" &&
+          navigator.serviceWorker.controller
+        ) {
+          showUpdateBanner();
+        }
+      });
     });
+  });
 }
 
-// banner logic and controllerchange listener remain the same
-
-// ----------------------
-// Function to show update banner
-// ----------------------
-function showUpdateBanner(registration) {
+function showUpdateBanner() {
   const banner = document.createElement("div");
+
   banner.innerHTML = `
-    <div style="
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #222;
-      color: white;
-      padding: 12px 18px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    ">
-      New version available!
-      <button id="refreshApp" style="
-        background: #4caf50;
-        border: none;
-        color: white;
-        padding: 6px 12px;
-        border-radius: 4px;
-        cursor: pointer;
-      ">Refresh</button>
-      <button id="dismissUpdate" style="
-        background: #888;
-        border: none;
-        color: white;
-        padding: 6px 12px;
-        border-radius: 4px;
-        cursor: pointer;
-      ">Dismiss</button>
-    </div>
+    New version available.
+    <button id="refreshApp">Refresh</button>
   `;
+
+  banner.style.position = "fixed";
+  banner.style.bottom = "20px";
+  banner.style.left = "50%";
+  banner.style.transform = "translateX(-50%)";
+  banner.style.background = "#333";
+  banner.style.color = "white";
+  banner.style.padding = "10px 16px";
+  banner.style.borderRadius = "6px";
+  banner.style.zIndex = "2000";
 
   document.body.appendChild(banner);
 
   document.getElementById("refreshApp").onclick = () => {
-    registration.waiting.postMessage({ type: "SKIP_WAITING" });
-  };
-
-  document.getElementById("dismissUpdate").onclick = () => {
-    banner.remove();
+    location.reload();
   };
 }
-
-// ----------------------
-// Optional: listen for SW messages to reload page automatically
-// ----------------------
-navigator.serviceWorker.addEventListener("controllerchange", () => {
-  window.location.reload();
-});
