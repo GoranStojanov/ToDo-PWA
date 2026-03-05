@@ -1,17 +1,18 @@
-const CACHE_NAME = "todo-pwa-1.0.4";
+const CACHE_NAME = "todo-pwa-1.0.6";
 
 const FILES_TO_CACHE = [
   "/",
   "/index.html",
   "/style.css",
   "/manifest.json",
-  "/js/main.js",
-  "/js/ui.js",
-  "/js/tasks.js",
+  "/js/config.js",
   "/js/drag.js",
+  "/js/main.js",
   "/js/modal.js",
-  "/js/version.js",
   "/js/sw-register.js",
+  "/js/swipe.js",
+  "/js/tasks.js",
+  "/js/ui.js",
 ];
 
 // INSTALL

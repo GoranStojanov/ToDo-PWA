@@ -73,10 +73,15 @@ li:active {
 }
 
 /* Completed tasks */
-
 li.completed span {
   text-decoration: line-through;
   opacity: 0.6;
+}
+
+/* Swipe delete visual feedback */
+li.swiping {
+  background-color: #d11a2a;
+  color: white;
 }
 
 /* Delete button */
