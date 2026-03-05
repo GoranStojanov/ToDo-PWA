@@ -1,6 +1,6 @@
 import { getTasks, toggleTask, deleteTask } from "./tasks.js";
 import { showConfirm } from "./modal.js";
-import { attachDrag } from "./drag.js";
+import { enableDrag } from "./drag.js";
 
 const taskList = document.getElementById("taskList");
 
@@ -53,8 +53,8 @@ export function renderTasks() {
       }
     });
 
-    // Attach drag AFTER dataset.index is set
-    attachDrag(li);
+    // Enable drag AFTER dataset.index is set
+    enableDrag(li, index);
 
     // Completed styling
     li.classList.toggle("completed", task.completed);
