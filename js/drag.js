@@ -9,10 +9,19 @@ export function enableDrag(li, index) {
 
   li.addEventListener("dragstart", () => {
     draggedIndex = index;
+    li.classList.add("dragging");
   });
 
   li.addEventListener("dragover", (e) => {
-    e.preventDefault(); // Required to allow drop
+    e.preventDefault(); // required for drop
+
+    // remove previous indicators
+    document.querySelectorAll(".drop-target").forEach((el) => {
+      el.classList.remove("drop-target");
+    });
+
+    // show drop line on hovered task
+    li.classList.add("drop-target");
   });
 
   li.addEventListener("drop", () => {
@@ -22,5 +31,13 @@ export function enableDrag(li, index) {
       reorderTasks(draggedIndex, targetIndex);
       renderTasks();
     }
+  });
+
+  li.addEventListener("dragend", () => {
+    li.classList.remove("dragging");
+
+    document.querySelectorAll(".drop-target").forEach((el) => {
+      el.classList.remove("drop-target");
+    });
   });
 }
