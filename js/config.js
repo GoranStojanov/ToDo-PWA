@@ -1,1 +1,1 @@
-export const APP_VERSION = "1.0.6"; // only place to bump version
+export const APP_VERSION = "1.0.7"; // only place to bump version

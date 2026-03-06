@@ -1,7 +1,6 @@
-const CACHE_NAME = "todo-pwa-1.0.6";
+const CACHE_NAME = "todo-pwa-1.0.7";
 
 const FILES_TO_CACHE = [
-  "/",
   "/index.html",
   "/style.css",
   "/manifest.json",

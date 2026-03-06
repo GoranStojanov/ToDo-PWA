@@ -84,8 +84,12 @@ li.swiping {
   color: white;
 }
 
-/* Delete button */
+/* Drop position indicator */
+li.drop-target {
+  border-top: 3px solid #4caf50;
+}
 
+/* Delete button */
 .delete-btn {
   margin-left: auto;
   cursor: pointer;
